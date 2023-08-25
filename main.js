@@ -1,45 +1,35 @@
 const weatherKey = "3d357309cff44dd49f0215131232208";
-let currentLocation = 'london';
 
+const conditionIcon = document.getElementById("condition-icon");
+const currentLocation = document.getElementById("current-location");
 
-function getCurrentWeather(){
-    const currentRequest = `https://api.weatherapi.com/v1/current.json?key=${
-     weatherKey  }&q=${currentLocation}`;
-    fetch(currentRequest, {mode: 'cors'})
-    .then((response) => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-}
-
-function getForecast(){
+function getForecast(location){
     const currentRequest = `https://api.weatherapi.com/v1/forecast.json?key=${
-     weatherKey  }&q=${  currentLocation  }&days=3`;
+     weatherKey  }&q=${  location  }&days=3`;
     fetch(currentRequest, {mode: 'cors'})
     .then((response) => response.json())
     .then(data => {
         console.log(data);
+        conditionIcon.src = processData(data).condition.icon;
+        currentLocation.textContent = data.location.name;
     })
     .catch((err) => {
         console.log(err);
     });
-}
-
-function changeLocale(newLocation){
-    currentLocation = newLocation;
-    getCurrentWeather();
 }
 
 function processData(data){
-    const processed = {
-        condition: data.condition,
-        temp_c: data.temp_c,
-        temp_f: data.temp_f,
-    }
+    const {current} = data;
+    return current;
 }
 
-getCurrentWeather();
-getForecast();
+document.getElementById("location-form").addEventListener("submit", 
+    (event) =>{
+        event.preventDefault();
+
+        const inputLocation = document.getElementById("location-input").value;
+        getForecast(inputLocation);
+    });
+
+
+getForecast('london');

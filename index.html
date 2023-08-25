@@ -8,6 +8,72 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header">
+        <div class="search">
+            <form id="location-form">
+                <input type="text" name="location" id="location-input">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="unit-toggle">
+            <button type="button">Metric/Imperial</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="current">
+            <h2 class="location">Location</h2>
+            <img src="" alt="condition icon" id="condition-icon">
+            <div class="specifics">
+                <div class="temp">
+                    <span class="fahrenheit">8f</span>
+                    <span class="celsius">7c</span>
+                    <h3>Temp</h3>
+                </div>
+                <div class="humidity">
+                    <span>30%</span>
+                    <h3>Humidity</h3>
+                </div>
+                <div class="wind">
+                    <span class="wind-dir">S</span>
+                    <span class="wind-speed-m">49</span>
+                    <span class="wind-speed-k">34</span>
+                    <h3>Wind</h3>
+                </div>
+                <div class="precip">
+                    <span class="precip-in">2</span>
+                    <span class="precip-m">1</span>
+                    <h3>Precip</h3>
+                </div>
+            </div>
+        </div>
+        <div class="forecast">
+            <div class="day-1">
+                <span class="day">Tommorrow</span>
+                <img src="" alt="condition icon" class="condition">
+                <span class="temp-f">8f</span>
+                <span class="temp-c">7c</span>
+                <span class="precip-chance">30</span>
+            </div>
+            <div class="day-2">
+                <span class="day">Sunday</span>
+                <img src="" alt="condition icon" class="condition">
+                <span class="temp-f">8f</span>
+                <span class="temp-c">7c</span>
+                <span class="precip-chance">30</span>
+            </div>
+            <div class="day-3">
+                <span class="day">Monday</span>
+                <img src="" alt="condition icon" class="condition">
+                <span class="temp-f">8f</span>
+                <span class="temp-c">7c</span>
+                <span class="precip-chance">30</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>
