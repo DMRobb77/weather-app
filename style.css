@@ -1,9 +1,13 @@
 * {
     border: 1px solid red;
     font-size: 1.2rem;
+    color: white;
 }
 
 body {
+    background-image: url(clear-day.jpg);
+    background-size: cover;
+    background-position: center;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
@@ -22,6 +26,18 @@ body {
     grid-template-rows: 1fr 1fr;
     width: clamp(20rem, 85%, 50rem);
     margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.37);
+}
+
+.temp {
+    position: relative;
+    justify-self: center;
+}
+
+.temp-f, .temp-c {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .current {
@@ -61,4 +77,8 @@ body {
 
 .footer {
 
+}
+
+.hidden {
+    visibility: hidden;
 }
