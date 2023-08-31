@@ -1,16 +1,41 @@
-import { unitToggle, swapBackground } from "./DOM-manipulation.js";
+import { 
+        unitToggle,
+        swapBackground,
+        updateCurrentWeather,
+        updateForecast 
+    } from "./DOM-manipulation.js";
 
 unitToggle();
 
 const weatherKey = "3d357309cff44dd49f0215131232208";
 
-const conditionIcon = document.getElementById("condition-icon");
-const currentLocation = document.getElementById("current-location");
-
-function processData(data){
+function getCurrentData(data){
     const {current} = data;
-    console.log(current);
     return current;
+}
+
+function getForecastData({data, day}){
+    const forecastday = data.forecast.forecastday[day];
+    console.log(`Here's the forceast ${data.forecast.forecastday[day]}`);
+    return forecastday;
+}
+
+function getCurrentWeather(location){
+    const currentRequest = `https://api.weatherapi.com/v1/forecast.json?key=${
+     weatherKey  }&q=${  location  }`;
+    fetch(currentRequest, {mode: 'cors'})
+    .then((response) => response.json())
+    .then(data => {
+        console.log(data);
+        swapBackground({condition:getCurrentData(data).condition.code,
+             isDay: getCurrentData(data).is_day});
+
+        updateCurrentWeather({location: data.location, 
+            current: getCurrentData(data)});
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 }
 
 function getForecast(location){
@@ -19,13 +44,10 @@ function getForecast(location){
     fetch(currentRequest, {mode: 'cors'})
     .then((response) => response.json())
     .then(data => {
-        conditionIcon.src = processData(data).condition.icon;
-
-        swapBackground({condition:processData(data).condition.code,
-             isDay: processData(data).is_day});
-
-             
-        currentLocation.textContent = data.location.name;
+        for (let i = 0; i < 3; i += 1){
+            updateForecast({forecast: getForecastData({data, day:i}),
+             day: i})
+        }
     })
     .catch((err) => {
         console.log(err);
@@ -38,8 +60,10 @@ document.getElementById("location-form").addEventListener("submit",
         event.preventDefault();
 
         const inputLocation = document.getElementById("location-input").value;
+        getCurrentWeather(inputLocation);
         getForecast(inputLocation);
     });
 
 
+getCurrentWeather('london');
 getForecast('london');
