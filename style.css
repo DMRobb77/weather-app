@@ -4,6 +4,7 @@
     /* border: 1px solid red; */
     font-size: 1.2rem;
     color: white;
+    /* border: 1px white solid; */
 }
 
 body {
@@ -44,15 +45,21 @@ body {
 .current {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10rem 1fr;
+    grid-template-rows: 5rem 4rem 1fr 1fr;
 }
 
-.current > .location {
+.current .location {
     justify-self: center;
     font-size: 3rem;
 }
 
-.current > img {
+.current .region {
+    justify-self: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.current .condition {
     justify-self: center;
     width: 3rem;
 }
