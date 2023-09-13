@@ -8,12 +8,9 @@
         "airbnb-base",
         "prettier"
     ],
-    "overrides": [
-    ],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
-    "rules" : {
-        "no-console": "off"
+    "rules": {
     }
 }

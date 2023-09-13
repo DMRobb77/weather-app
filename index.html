@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="header">
+        <h2>Weather</h2>
         <div class="search">
             <form id="location-form">
                 <input type="text" name="location" id="location-input">
@@ -16,36 +17,53 @@
             </form>
         </div>
         <div class="unit-toggle">
-            <button type="button">Metric/Imperial</button>
+            <button type="button">
+                <span>Metric</span>
+                <div class="toggle-icon">
+                    <img src="toggle_off.png" alt="toggle off" class="toggle-off
+                        hidden">
+                    <img src="toggle_on.png" alt="toggle on" class="toggle-on">
+                </div>
+                <span>Imperial</span>
+            </button>
         </div>
     </div>
     <div class="main">
         <div class="current">
-            <h2 class="location">Location</h2>
-            <h4 class="region">Region</h4>
-            <div class="condition">
-                <img src="" alt="condition icon">
-                <span>Condition</span>
+            <div class="spacetime">
+                <h2 class="location">Location</h2>
+                <h4 class="region">Region</h4>
+                <h5 class="time">Time</h5>
             </div>
-            <div class="specifics">
+            <div class="temp-con">
                 <div class="temp">
                     <span class="temp-f units">8f</span>
                     <span class="temp-c units hidden">7c</span>
-                </div>  
+                </div>
+                <div class="condition">
+                    <img src="" alt="condition icon">
+                    <span>Condition</span>
+                </div>
+            </div>
+            <div class="specifics">
                 <div class="precip">
-                    <span class="precip-in units">2</span>
-                    <span class="precip-mm units hidden">1</span>
-                    <h3>Precip</h3>
+                    <h3>Precipitation</h3>
+                    <div class="precip-toggle">
+                        <span class="precip-in units">2</span>
+                        <span class="precip-mm units hidden">1</span>
+                    </div>
                 </div>
                 <div class="humidity">
-                    <span>30%</span>
                     <h3>Humidity</h3>
+                    <span>30%</span>
                 </div>
                 <div class="wind">
-                    <span class="wind-dir">S</span>
-                    <span class="wind-speed-m units">49</span>
-                    <span class="wind-speed-k units hidden">34</span>
                     <h3>Wind</h3>
+                    <span class="wind-dir">S</span>
+                    <div class="wind-speed">
+                        <span class="wind-speed-m units">49</span>
+                        <span class="wind-speed-k units hidden">34</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,12 +75,12 @@
                     <span>Condition</span>
                 </div>
                 <div class="temp high">
-                    <span>High</span>
+                    <h4>High</h4>
                     <span class="temp-f units">8f</span>
                     <span class="temp-c units hidden">7c</span>
                 </div>
                 <div class="temp low">
-                    <span>Low</span>
+                    <h4>Low</h4>
                     <span class="temp-f units">8f</span>
                     <span class="temp-c units hidden">7c</span>
                 </div>

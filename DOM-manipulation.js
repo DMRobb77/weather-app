@@ -6,6 +6,10 @@ function unitToggle() {
     unitElements.forEach(element => {
         element.classList.toggle("hidden");
     });
+    const toggleIcons = document.querySelectorAll(".toggle-icon img");
+    toggleIcons.forEach(element => {
+        element.classList.toggle("hidden");
+    });
 }
 
 function swapBackground({condition, isDay}) {
@@ -27,13 +31,17 @@ function swapBackground({condition, isDay}) {
 function updateCurrentWeather({location, current}) {
 
     // Update location
-    const locationName = document.querySelector(".current > h2");
+    const locationName = document.querySelector(".current h2");
     locationName.textContent = `${location.name}`;
 
-    const regionName  = document.querySelector(".current > h4");
+    const regionName  = document.querySelector(".current h4");
     regionName.textContent = `${location.country === "United States of America" 
         ? location.region : location.country}`;
 
+    // Update time
+    const timeText = document.querySelector(".spacetime .time");
+    timeText.innerText = `Last updated: ${current.last_updated} local time`;
+    
     // Update condition
     const conditionIcon = document.querySelector(".condition > img");
     const conditionText = document.querySelector(".condition > span");
@@ -41,8 +49,8 @@ function updateCurrentWeather({location, current}) {
     conditionText.innerText = current.condition.text;
 
     // Update temperature
-    const tempF = document.querySelector(".specifics .temp-f");
-    const tempC = document.querySelector(".specifics .temp-c");
+    const tempF = document.querySelector(".current .temp-f");
+    const tempC = document.querySelector(".current .temp-c");
     tempF.innerText = `${Math.round(current.temp_f)}°F`;
     tempC.innerText = `${Math.round(current.temp_c)}°C`;
 
@@ -130,9 +138,12 @@ function updateForecast({forecast, day}){
     span.precip-chance`);
     precipChance.innerText = `${ forecast.day.daily_chance_of_snow || 
         forecast.day.daily_chance_of_rain }%`;
-
 }
 
 toggleButton.addEventListener('click', unitToggle);
 
-export { unitToggle, swapBackground, updateCurrentWeather, updateForecast };
+export { unitToggle, 
+    swapBackground, 
+    updateCurrentWeather, 
+    updateForecast
+};
