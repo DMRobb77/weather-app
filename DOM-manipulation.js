@@ -10,6 +10,11 @@ function unitToggle() {
     toggleIcons.forEach(element => {
         element.classList.toggle("hidden");
     });
+
+    const selectedUnits = document.querySelectorAll(".unit-display");
+    selectedUnits.forEach(element => {
+        element.classList.toggle("unselected-units");
+    })
 }
 
 function swapBackground({condition, isDay}) {
@@ -74,7 +79,6 @@ function updateCurrentWeather({location, current}) {
 }
 
 function updateForecast({forecast, day}){
-    console.log(forecast);
     const dayText = document.querySelector(`.day-${ day + 1 } .day`);
     const date = new Date(forecast.date);
     if (day === 0){
@@ -140,10 +144,21 @@ function updateForecast({forecast, day}){
         forecast.day.daily_chance_of_rain }%`;
 }
 
+function loadingScreen() {
+    const tempCon = document.querySelectorAll(".current > *," + 
+        " .day-1 > *, " +
+        ".day-2 > *, " +
+        ".day-3 > *");
+    tempCon.forEach(element => {
+        element.classList.toggle("hidden");
+    })
+}
+
 toggleButton.addEventListener('click', unitToggle);
 
 export { unitToggle, 
     swapBackground, 
     updateCurrentWeather, 
-    updateForecast
+    updateForecast,
+    loadingScreen
 };

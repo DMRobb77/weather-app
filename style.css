@@ -2,11 +2,12 @@
 
 :root {
     --background-color: rgba(0, 0, 0, 0.651);
+    --bright-white: rgb(245, 245, 245);
+    --dim-white: rgb(204, 204, 204);
 }
 
 * {
     font-size: 1.2rem;
-    color: white;
 }
 
 body {
@@ -22,14 +23,17 @@ body {
 
 .header {
     display: grid;
-    grid-template-columns: 12rem 1fr 16rem;
+    grid-template-columns: 12rem 1fr 12rem;
     grid-template-rows: 1fr;
-    margin: 0 1rem;
+    margin: 0 auto;
+    width: clamp(20rem, 90%, 90rem);
+
 }
 
 .header h2 {
-    font-size: 2.5rem;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.795);
+    font-size: 2.8rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.89);
+    color: var(--bright-white);
 }
 
 .unit-toggle button {
@@ -37,6 +41,30 @@ body {
     display: grid;
     grid-template-columns: 1fr 2rem 1fr;
     grid-template-rows: 1fr;
+    height: 3rem;
+    background: radial-gradient(rgba(0, 0, 0, 0.295), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    background-size: 15rem 4.2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-style: none;
+    color: var(--bright-white);
+    font-size: 1.4rem;
+}   
+
+.unit-toggle button:hover {
+    border: solid red 1px;
+}
+
+.unit-toggle img {
+    filter: invert(100%);
+}
+
+.unit-toggle span {
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.849);
+}
+
+.unselected-units {
+    color: var(--dim-white);
 }
 
 .toggle-icon {
@@ -56,11 +84,69 @@ body {
     justify-self: center;
 }
 
-.location-form input {
+.search {
+    margin-left: 1rem;
+}
+
+.location-form {
+    display: grid;
+    grid-template-columns: minmax(10rem, 20rem) 7rem;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+}
+
+.location-form * {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.location-form input[type="text"] {
+    color: var(--bright-white);
+}
+
+.location-form input[type="text"]:hover {
+    background-color: var(--bright-white);
+    color: black;
+}
+
+.location-form button[type="submit"] {
+    height: 90%;
+    border-radius: 12px;
+    border: 3px solid var(--bright-white);
+    width: 6rem;
+    background-color: transparent;
+    color: var(--bright-white);
+    font-size: 1.4rem;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.location-form button[type="submit"]:hover {
+    background-color: var(--bright-white);
+    color: black;
+    text-shadow: none;
+}
+
+.location-form button[type="submit"]:active {
+
+
+}
+
+.location-search {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    border: 3px solid white;
+    font-size: 1.4rem;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.location-search:focus {
+    outline: none;
+    background-color: white;
     color: black;
 }
 
 .main {
+    color: var(--bright-white);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 25rem 1fr;
@@ -100,6 +186,7 @@ body {
 }
 
 .time {
+    color: var(--dim-white);
     font-weight: 500;
     font-size: 1rem;
 }
@@ -109,12 +196,13 @@ body {
     display: grid;
     grid-template-columns: 5rem 1fr;
     grid-template-rows: 1fr;
-    align-items: center;
+    align-items: flex-end;
     margin-top: 1rem;
 }
 
 .current .condition span {
     font-size: 1.4rem;
+    align-self: center;
 }
 
 .temp-con {
@@ -122,11 +210,19 @@ body {
     grid-column: 2 / 3;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 4rem 1fr 1fr;
+}
+
+.temp-con h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
 }
 
 .specifics {
-    margin-top: 2rem;
+    margin: 2rem 4rem 0 4rem;
     grid-row: 2 / 3;
     grid-column: 1 / 3;
     display: grid;
@@ -149,7 +245,7 @@ body {
 .current .temp-f, .current .temp-c {
     position: absolute;
     font-size: 6rem;
-    top: 3rem;
+    top: 0.5rem;
     left: -1.1em;
 }
 
@@ -161,6 +257,11 @@ body {
 .precip-toggle {
     position: relative;
     justify-self: center;
+}
+
+.precip-chance,
+   .forecast .units {
+    color: var(--dim-white);
 }
 
 .precip .units {
@@ -279,3 +380,32 @@ body {
 .hidden {
     visibility: hidden;
 }
+
+
+.simple-spinner {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .simple-spinner span {
+    display: block;
+    width: 6rem;
+    height: 6rem;
+    border: 0.4rem solid transparent;
+    border-radius: 50%;
+    border-right-color: var(--bright-white);
+    animation: spinner-anim 0.8s linear infinite;
+  }
+  
+  @keyframes spinner-anim {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

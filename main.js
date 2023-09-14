@@ -2,7 +2,8 @@ import {
   unitToggle,
   swapBackground,
   updateCurrentWeather,
-  updateForecast
+  updateForecast,
+  loadingScreen
 } from './DOM-manipulation.js';
 
 unitToggle();
@@ -20,23 +21,31 @@ function getForecastData({ data, day }) {
 }
 
 function getCurrentWeather(location) {
+
+  loadingScreen();
+
+
   const currentRequest = `https://api.weatherapi.com/v1/forecast.json?key=${
     weatherKey}&q=${location}`;
   fetch(currentRequest, { mode: 'cors' })
     .then((response) => response.json())
     .then((data) => {
-      console.log(getCurrentData(data));
-      swapBackground({
-        condition: getCurrentData(data).condition.code,
-        isDay: getCurrentData(data).is_day,
-      });
 
       updateCurrentWeather({
         location: data.location,
         current: getCurrentData(data),
       });
+
+      swapBackground({
+        condition: getCurrentData(data).condition.code,
+        isDay: getCurrentData(data).is_day,
+      });
+
+      loadingScreen();
+
     })
     .catch((err) => {
+      loadingScreen();
       console.log(err);
     });
 }
@@ -60,14 +69,14 @@ function getForecast(location) {
 }
 
 // Search bar submission
-document.getElementById('location-form').addEventListener(
+document.querySelector('.location-form').addEventListener(
   'submit',
   (event) => {
     event.preventDefault();
-
-    const inputLocation = document.getElementById('location-input').value;
+    const inputLocation = document.querySelector('.location-search').value;
     getCurrentWeather(inputLocation);
     getForecast(inputLocation);
+    document.querySelector('.location-search').value = '';
   },
 );
 

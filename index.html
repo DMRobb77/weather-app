@@ -11,34 +11,39 @@
     <div class="header">
         <h2>Weather</h2>
         <div class="search">
-            <form id="location-form">
-                <input type="text" name="location" id="location-input">
+            <form class="location-form">
+                <input type="text" name="location" class="location-search">
                 <button type="submit">Search</button>
             </form>
         </div>
         <div class="unit-toggle">
             <button type="button">
-                <span>Metric</span>
+                <span class="unselected-units unit-display">Metric</span>
                 <div class="toggle-icon">
                     <img src="toggle_off.png" alt="toggle off" class="toggle-off
                         hidden">
                     <img src="toggle_on.png" alt="toggle on" class="toggle-on">
                 </div>
-                <span>Imperial</span>
+                <span class="unit-display">Imperial</span>
             </button>
         </div>
     </div>
+
     <div class="main">
         <div class="current">
+            <div class="simple-spinner hidden">
+                <span></span>
+            </div>
             <div class="spacetime">
                 <h2 class="location">Location</h2>
                 <h4 class="region">Region</h4>
                 <h5 class="time">Time</h5>
             </div>
             <div class="temp-con">
+                <h2>Currently</h2>
                 <div class="temp">
                     <span class="temp-f units">8f</span>
-                    <span class="temp-c units hidden">7c</span>
+                    <span class="temp-c units hidden">7c</span>               
                 </div>
                 <div class="condition">
                     <img src="" alt="condition icon">
