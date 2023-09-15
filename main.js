@@ -84,4 +84,3 @@ document.querySelector('.location-form').addEventListener(
 
 getCurrentWeather('london');
 getForecast('london');
-displayPopup();
