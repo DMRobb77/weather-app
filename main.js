@@ -3,7 +3,8 @@ import {
   swapBackground,
   updateCurrentWeather,
   updateForecast,
-  loadingScreen
+  loadingScreen,
+  displayPopup
 } from './DOM-manipulation.js';
 
 unitToggle();
@@ -46,6 +47,7 @@ function getCurrentWeather(location) {
     })
     .catch((err) => {
       loadingScreen();
+      displayPopup();
       console.log(err);
     });
 }
@@ -82,3 +84,4 @@ document.querySelector('.location-form').addEventListener(
 
 getCurrentWeather('london');
 getForecast('london');
+displayPopup();

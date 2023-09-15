@@ -154,11 +154,22 @@ function loadingScreen() {
     })
 }
 
+function displayPopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+
+
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 3000);
+}
+
 toggleButton.addEventListener('click', unitToggle);
 
 export { unitToggle, 
     swapBackground, 
     updateCurrentWeather, 
     updateForecast,
-    loadingScreen
+    loadingScreen,
+    displayPopup
 };
